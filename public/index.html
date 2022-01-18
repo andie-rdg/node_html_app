@@ -4,12 +4,14 @@
       <title>Diario</title>
       <meta charset="UTF-8">
       <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="apple-mobile-web-app-capable" content="yes">
       <script src="p5/p5.js"></script>
       <script src="gpt/gpt.js"></script>
       <script src="sketch.js"></script>
       <link rel="stylesheet" href="style.css">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+      <script src="imgseq.js"></script>
       <link rel="icon" href="favicon.ico" type="image/x-icon"/>
-      
    </head>
    <body>
       <header>
@@ -25,9 +27,9 @@
       </header>
       <main>
          <div class="question">
-           <!--  <h2>Long time no see, i was feeling lonely... <br>
+            <!--  <h2>Long time no see, i was feeling lonely... <br>
                What was your project for the electronics jury? 
-            </h2> -->
+               </h2> -->
             <h2> I noticed everyone is paying atention at you... What are you doing?  </h2>
             <form action="/" method="POST">
                <input type="text" id="answer" name="answer" placeholder="..."><br><br>
@@ -35,12 +37,13 @@
             </form>
          </div>
          <div class="shhScroll">
-            <h4>Scroll down! shhh...</h4>
+            <h3>shh...scroll down! I'll come with you..</h3>
+            <h3>I prefer to go alone.</h3>
          </div>
          <div class="journal">
             <div class="collectiveGate">
-            <h2>This is our diary:</h2>
-         </div>
+               <h2>This is our diary:</h2>
+            </div>
             <form>
                <input  type="date" placeholder="(this.type='date')" id="date">
                <input type="submit" value="Check previous diario entries">
@@ -71,8 +74,24 @@
          <div>
             <a href="#">^ back to top</a>
          </div>
-      
-</script>
+         <div id="container">
+            <img src="http://s23.postimage.org/t57meexkb/horse_1.png" class="animated" />
+            <img src="http://s23.postimage.org/i86apnasr/horse_2.png" class="animated" />
+            <img src="http://s23.postimage.org/6kc8v3lnv/horse_3.png" class="animated" />
+            <img src="http://s23.postimage.org/w4ej1j71n/horse_4.png" class="animated" />
+            <img src="http://s23.postimage.org/ddclrdch7/horse_5.png" class="animated" />
+            <img src="http://s23.postimage.org/nbxkdulwr/horse_6.png" class="animated" />
+            <img src="http://s23.postimage.org/phrv8cpd7/horse_7.png" class="animated" />
+            <img src="http://s23.postimage.org/n1un88wob/horse_8.png" class="animated" />
+            <img src="http://s23.postimage.org/9yz0oz6gb/horse_9.png" class="animated" />
+            <img src="http://s23.postimage.org/6gn0sl5kb/horse_10.png" class="animated" />
+            <img src="http://s23.postimage.org/vnxwsu8ob/horse_11.png" class="animated" />
+            <img src="http://s23.postimage.org/bhuetyd0r/horse_12.png" class="animated" />
+            <img src="http://s23.postimage.org/imc82zka3/horse_13.png" class="animated" />
+            <img src="http://s23.postimage.org/auvi4fg4r/horse_14.png" class="animated" />
+        </div>
+        <div style="display: block; height: 2000px; width: 100px;"></div>
+         <div style="display: block; height: 2000px; width: 100px;"></div>
       </main>
    </body>
    <script>
@@ -89,4 +108,6 @@
       getInfoFromServer();
       
    </script>
+
+      
 </html>
