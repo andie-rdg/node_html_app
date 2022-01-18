@@ -1,6 +1,9 @@
 // la taille de notre objet
 var taille = 0
 var canvas;
+var positionX;
+var positionY;
+
 
 // créer un canvas plein écran du browser
 function setup() {
@@ -19,6 +22,8 @@ function windowResized(){
 }
 
 function draw() {
+	positionX = width*0.5;
+	positionY = height*0.5;
 	// effacer les pixels précédents
 	clear()
 	// couleur
@@ -26,7 +31,7 @@ function draw() {
 	noStroke()
 	// dessiner cercle au milieu avec cette variable "taille"
 	push();
-	circle(width*0.5, height*0.5, taille-1)
+	circle(positionX, positionY, taille-1)
 	pop();
 
 }
@@ -43,4 +48,5 @@ function mouseWheel(event) {
 	let deltaY = event.wheelDeltaY
 	// faire une transition de l'ancienne valeur de taille vers le nouveau deltaY
 	taille = lerp(taille,deltaY,0.1)
+
 }

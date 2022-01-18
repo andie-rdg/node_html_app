@@ -8,12 +8,21 @@ var bodyParser = require('body-parser')
 const app = express();
 
 const config = require('./config.js');
+
+
+const {
+  MONGO_DB_CONNECTION_URL,
+  MONGO_DB_NAME,
+  MONGO_DB_COLLECTION
+} = config;
+
   
 var urlencodedParser = bodyParser.urlencoded({ extended: false })
 
 app.use(express.static(path.join(__dirname, 'public'))); 
 
 app.post('/', urlencodedParser, (req, res) => {
+
     app.use(express.static(__dirname + '/public'));
 
     let toSend = {
@@ -21,27 +30,54 @@ app.post('/', urlencodedParser, (req, res) => {
       date: moment().format()
     }
 
-    console.log("Send from the server:", toSend);
-
     //connect to my mongodb w/ connectionurl
-     MongoClient.connect(config.MONGO_DB_CONNECTION_URL,
+     MongoClient.connect(MONGO_DB_CONNECTION_URL,
       {useUnifiedTopology: true},
       (err, db) => {
       if (err) throw err;
-      let databaseMongo = db.db(config.MONGO_DB_NAME);
-  
+      let databaseMongo = db.db(MONGO_DB_NAME);
       // Connect to the meme entry collection of the db
       // Insert the data;
-      databaseMongo.collection(config.MONGO_DB_COLLECTION).
+      databaseMongo.collection(MONGO_DB_COLLECTION).
       insertOne({
         data: toSend,
       }).then(() => {
-  
         console.log("this data had been inserted", toSend);
-
       })
     }); 
+});
 
+// get the info from the db
+app.get('/db-to-client', (req, res) => {
+
+  MongoClient.connect(MONGO_DB_CONNECTION_URL,
+    {useUnifiedTopology: true},
+    (err, db) => {
+    if (err) throw err;
+    let databaseMongo = db.db(MONGO_DB_NAME);
+    databaseMongo
+    .collection(MONGO_DB_COLLECTION)
+    .find({})
+    .toArray((error, entries) => {
+      if (err) throw error;
+
+      console.log(entries);
+
+      let entriesTextOnly = entries
+      .map((ele, index) => {
+        const {
+          message
+        } = ele.data; 
+        return message;
+
+      });
+
+
+      res.send({ 
+        data: entriesTextOnly
+      });
+  });
+});
 });
 
 app.listen(port);

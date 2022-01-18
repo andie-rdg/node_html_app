@@ -1,27 +1,85 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>Node to Server</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script src="p5/p5.js"></script>
-    <script src="gpt/gpt.js"></script>
-    <script src="sketch.js"></script>
-    <link rel="stylesheet" href="style.css">
-  </head>
-  <body>
-    <header>
-      <p>logo or wtv</p>
-    </header>
+   <head>
+      <title>Diario</title>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <script src="p5/p5.js"></script>
+      <script src="gpt/gpt.js"></script>
+      <script src="sketch.js"></script>
+      <link rel="stylesheet" href="style.css">
+      <link rel="icon" href="favicon.ico" type="image/x-icon"/>
+   </head>
+   <body>
+      <header>
+         <div class="logo">
+            <span class="h1">d</span>
+            <span class="h1">i</span>
+            <span class="h1">a</span>
+            <span class="h1">r</span>
+            <span class="h1">i</span>
+            <span class="h1">o</span>
+            </span>
+         </div>
+      </header>
       <main>
-        <div class="question">
-        <h1>Long time no see, i was feeling lonely...<br>
-          What was your project for the electronics jury? </h1>
-        <form action="/" method="POST">
-          <input type="text" id="answer" name="answer"><br><br>
-          <!--<input type="submit" id="send" value="Send">-->
-        </form>
-        </div>	
+         <div class="question">
+            <h2 class="line_1">Long time no see, i was feeling lonely... <br>
+               What was your project for the electronics jury? 
+            </h2>
+            <form action="/" method="POST">
+               <input type="text" id="answer" name="answer" placeholder="..."><br><br>
+               <!--<input type="submit" id="send" value="Send">-->
+            </form>
+         </div>
+         <div class="shhScroll">
+            <h4>Scroll down! shhh...</h4>
+         </div>
+         <div class="journal">
+            <form>
+               <input  type="date" placeholder="(this.type='date')" id="date">
+               <input type="submit" value="Check previous diario entries">
+            </form>
+         </div>
+         <div class="fix">
+            <div class="journalEntry1">
+               <p>19.01.2022</p>
+               <br>
+               <br>
+               <p>Dear Diary,   <br>
+                  <br>
+                  I went to a party at my moms house. It was sunny and peaceful, and the only thing on the floor of the house that looked like a H-back was a set of art deco «Mozart’s Bugs Bunny Houses». 
+                  Everyone was dressed up in everything from clothes, t-shirts, and flip-flops
+               </p>
+            </div>
+            <div class="journalEntry2">
+               <p>18.01.2022</p>
+               <br>
+               <br>
+               <p>Dear Diary,   <br>
+                  <br>
+                  i am happy  and everything is going well. I feel 100% in good gear mentally and physically. I have never had so much happiness in my life. It’s helped my mental health tremendously, but it’s “tputting me in a good place”. I’ll keep trying to get better but it’s probably only now and then I realise I can’t ever go on that road again
+               </p>
+            </div>
+            <img src="carnet-diario.png" id="fix"/>
+         </div>
+         <div>
+            <a href="#logo">^ back to top</a>
+         </div>
       </main>
-  </body>
+   </body>
+   <script>
+      const getInfoFromServer = () => {
+        fetch("/db-to-client")
+          .then((response) => {
+            return response.json();
+          })
+          .then((data) => {
+            console.log(data);
+          });
+      }
+      
+      getInfoFromServer();
+      
+   </script>
 </html>
