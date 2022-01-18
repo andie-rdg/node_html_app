@@ -29,10 +29,10 @@
                What was your project for the electronics jury? 
             </h2> -->
             <h2> I noticed everyone is paying atention at you... What are you doing?  </h2>
-            <form action="/" method="POST">
+            <form onsubmit="sendInfoToServer()">
                <input type="text" id="answer" name="answer" placeholder="..."><br><br>
-               <!--<input type="submit" id="send" value="Send">-->
             </form>
+               <!--<input type="submit" id="send" value="Send">-->
          </div>
          <div class="shhScroll">
             <h4>Scroll down! shhh...</h4>
@@ -76,6 +76,42 @@
       </main>
    </body>
    <script>
+
+      // "enter" when we submit an answer
+      const sendInfoToServer = () => {
+
+         // find the value of the input
+         // use fetch to POST the info to the server route
+
+         let valueToSend = document.getElementById("answer").value;
+
+         var headers = {
+            "Content-Type": "application/json",                                                                                                
+            "Access-Control-Origin": "*"
+         }
+
+         var data = {
+            "email": "peter@klaven",
+            "password": "cityslicka"
+         }
+
+         fetch("client-to-server", {
+            method: "POST",
+            headers: headers,
+            body:  JSON.stringify(data)
+         })
+         .then(function(response){ 
+            return response.json(); 
+         })
+         .then(function(data){ 
+            console.log(data)
+         });
+
+
+
+
+       }
+
       const getInfoFromServer = () => {
         fetch("/db-to-client")
           .then((response) => {

@@ -21,31 +21,37 @@ var urlencodedParser = bodyParser.urlencoded({ extended: false })
 
 app.use(express.static(path.join(__dirname, 'public'))); 
 
-app.post('/', urlencodedParser, (req, res) => {
 
-    app.use(express.static(__dirname + '/public'));
+app.post('/client-to-server', urlencodedParser, (req, res) => {
 
-    let toSend = {
-      message: req.body.answer,
-      date: moment().format()
-    }
 
-    //connect to my mongodb w/ connectionurl
-     MongoClient.connect(MONGO_DB_CONNECTION_URL,
-      {useUnifiedTopology: true},
-      (err, db) => {
-      if (err) throw err;
-      let databaseMongo = db.db(MONGO_DB_NAME);
-      // Connect to the meme entry collection of the db
-      // Insert the data;
-      databaseMongo.collection(MONGO_DB_COLLECTION).
-      insertOne({
-        data: toSend,
-      }).then(() => {
-        console.log("this data had been inserted", toSend);
-      })
-    }); 
+  console.log(req.body);
+  
+  let toSend = {
+    message: req.body,
+    date: moment().format()
+  }
+  
+  //connect to my mongodb w/ connectionurl
+   MongoClient.connect(MONGO_DB_CONNECTION_URL,
+    {useUnifiedTopology: true},
+    (err, db) => {
+    if (err) throw err;
+    let databaseMongo = db.db(MONGO_DB_NAME);
+    // Connect to the meme entry collection of the db
+    // Insert the data;
+    databaseMongo.collection(MONGO_DB_COLLECTION).
+    insertOne({
+      data: toSend,
+    }).then(() => {
+      console.log("this data had been inserted", toSend);
+    })
+  }); 
+
+
 });
+
+
 
 // get the info from the db
 app.get('/db-to-client', (req, res) => {
