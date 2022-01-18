@@ -2,7 +2,7 @@
 async function talkToRobot(prompt) {
 
 	// Se connecter au serveur GPT local
-	const request = await fetch("http://10.42.0.1:8000/ask;'" + prompt + "'", {
+	const request = await fetch("http://10.42.0.1:3001/ask;'" + prompt + "'", {
 		method: 'GET'
 	})
 
@@ -13,3 +13,5 @@ async function talkToRobot(prompt) {
 	console.log(response)
 
 }
+
+talkToRobot("hello")

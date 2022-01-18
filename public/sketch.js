@@ -5,6 +5,8 @@ var positionX;
 var positionY;
 
 
+
+
 // créer un canvas plein écran du browser
 function setup() {
 	canvas = createCanvas(windowWidth, windowHeight);
@@ -48,5 +50,7 @@ function mouseWheel(event) {
 	let deltaY = event.wheelDeltaY
 	// faire une transition de l'ancienne valeur de taille vers le nouveau deltaY
 	taille = lerp(taille,deltaY,0.1)
-
+	taille = lerp(taille,deltaY,0.1)
+	taille = lerp(taille,deltaY,0.1)
+	
 }

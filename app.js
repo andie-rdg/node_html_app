@@ -60,9 +60,6 @@ app.get('/db-to-client', (req, res) => {
     .find({})
     .toArray((error, entries) => {
       if (err) throw error;
-
-      console.log(entries);
-
       let entriesTextOnly = entries
       .map((ele, index) => {
         const {

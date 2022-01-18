@@ -87,3 +87,18 @@ h2{
     width:20%;
     font-size: 1.8em;
 }
+#answer {
+    /*cache le texte -> marche aussi avec type="password"*/
+    -webkit-text-security: disc;
+    padding: 5px 10px 5px 10px;
+}
+
+#answer:hover {
+    /*cache le texte -> marche aussi avec type="password"*/
+    -webkit-text-security: none;
+    padding: 5px 10px 5px 10px;
+}
+.collectiveGate{
+    text-align: center;
+
+}
